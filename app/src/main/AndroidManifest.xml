@@ -11,7 +11,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.TheQuizApp"
-        tools:targetApi="31">
+        tools:targetApi="31"
+        android:name="com.example.thequizapp.model.ImageStorage">
+
         <activity
             android:name=".MainActivity"
             android:exported="true">
@@ -22,8 +24,23 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".GalleryActivity"/>
-        <activity android:name=".QuizActivity"/>
+        <activity android:name=".GalleryActivity"
+                  android:exported="true">
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+        </activity>
+
+        <activity android:name=".QuizActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
