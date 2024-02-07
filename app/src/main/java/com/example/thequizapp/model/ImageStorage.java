@@ -18,9 +18,9 @@ public class ImageStorage extends Application {
         ImageStorage.imageList = new ImageItemList();
         imageToUriAndStore(R.drawable.danmark, "Danmark");
         imageToUriAndStore(R.drawable.england, "England");
-        imageToUriAndStore(R.drawable.kina, "Kina");
+        imageToUriAndStore(R.drawable.england, "Kina");
         imageToUriAndStore(R.drawable.norge, "Norge");
-        imageToUriAndStore(R.drawable.spania, "Spania");
+        imageToUriAndStore(R.drawable.england, "Spania");
     }
 
     public static ImageItemList getImageList() {

@@ -9,7 +9,7 @@ public class ImageItemList {
     private List<ImageItem>  imageList;
 
     public ImageItemList() {
-        this.imageList = new ArrayList<>();
+        this.imageList = new ArrayList<ImageItem>();
     }
 
     public List<ImageItem> getImageList() {

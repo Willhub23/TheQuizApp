@@ -37,6 +37,7 @@ public class GalleryAdapter extends ArrayAdapter<ImageItem> {
             imageView.setImageURI(getItem(position).getImage());
 
             TextView textView = convertView.findViewById(R.id.textView);
+            textView.setText("LALALAL");
 
 
 
