@@ -16,7 +16,7 @@
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:scaleType="centerCrop"
-            android:contentDescription="TODO" />
+            android:contentDescription="images" />
 
        <TextView
     android:id="@+id/textView"

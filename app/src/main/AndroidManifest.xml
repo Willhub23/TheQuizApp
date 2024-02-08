@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TheQuizApp"
         tools:targetApi="31"
-        android:name="com.example.thequizapp.model.ImageStorage">
+        android:name="com.example.thequizapp.model.EntryStorage">
 
         <activity
             android:name=".MainActivity"
@@ -34,6 +34,16 @@
         </activity>
 
         <activity android:name=".QuizActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".NewEntryActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

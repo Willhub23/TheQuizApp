@@ -1,94 +1,111 @@
 package com.example.thequizapp;
 
-import android.media.Image;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.util.Collections;
+import com.example.thequizapp.model.Entry;
+import com.example.thequizapp.model.EntryStorage;
+
 import java.util.List;
 
+
 public class QuizActivity extends AppCompatActivity {
+
+    private Entry correct;
+
+    private int correctPos;
     private ImageView imageView;
     private Button option1Button, option2Button, option3Button;
     private TextView scoreTextView;
 
-    private List<Image> imageList;
+    private List<String> options;
+
+    private List<Entry> imageList;
+    private int attempts = 0;
     private int currentScore = 0;
+
+    /**
+     * Initializes the activity and sets up the layout
+     *
+     * @param savedInstanceState If the activity is being re-initialized after
+     *                           previously being shut down then this Bundle contains the data it most
+     *                           recently supplied in {@link #onSaveInstanceState}.  <b><i>Note: Otherwise it is null.</i></b>
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
 
-        imageView = findViewById(R.id.image);
-        option1Button = findViewById(R.id.option1Button);
-        option2Button = findViewById(R.id.option2Button);
-        option3Button = findViewById(R.id.option3Button);
-        scoreTextView = findViewById(R.id.scoreTextView);
-
+        this.scoreTextView = findViewById(R.id.scoreTextView);
+        updateScore();
         startQuiz();
     }
 
+
+    private void Answer(int index) {
+        attempts++;
+        if (correctPos == index) {
+            currentScore++;
+            Toast.makeText(this, "Correct!", Toast.LENGTH_SHORT).show();
+            startQuiz();
+        } else {
+            Toast.makeText(this, "Incorrect, Correct answer: " + correct.getName(), Toast.LENGTH_SHORT).show();
+        }
+
+        updateScore();
+
+    }
+
+    private void updateScore() {
+        String text = String.format("Points: %d/%d", currentScore, attempts); // Converts a int to string to TextView
+        scoreTextView.setText(text);
+
+    }
+
+
     private void startQuiz() {
-        Image selectedImage = getRandomImage();
+        correct = EntryStorage.getImageList().getRandomImageItem();
+        options = EntryStorage.getImageList().getThreeRandomAnswers(correct);
 
-        List<String> answerOptions = generateAnswerOptions(selectedImage);
-        Collections.shuffle(answerOptions);
+        imageView = findViewById(R.id.quizImage);
+        imageView.setImageURI(correct.getImage());
 
-        displayImage(selectedImage);
-        displayAnswerOptions(answerOptions);
+        option1Button = findViewById(R.id.button1);
+        option1Button.setText(options.get(0));
+
+        option2Button = findViewById(R.id.button2);
+        option2Button.setText(options.get(1));
+
+        option3Button = findViewById(R.id.button3);
+        option3Button.setText(options.get(2));
+
+        correctPos = options.indexOf(correct.getName());
 
         option1Button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                checkAnswer(selectedImage, answerOptions.get(0));
+                Answer(0);
             }
         });
-
         option2Button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                checkAnswer(selectedImage, answerOptions.get(1));
+                Answer(1);
             }
         });
-
         option3Button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                checkAnswer(selectedImage, answerOptions.get(2));
+                Answer(2);
             }
         });
 
-    }
-
-    private Image getRandomImage() {
-
-        return null;
-    }
-
-    private List<String> generateAnswerOptions(Image image) {
-
-        return null;
-    }
-
-    private void displayImage(Image image) {
 
     }
-
-    private void checkAnswer(Image image, String selectedOption) {
-
-    }
-
-    private void displayAnswerOptions(List<String> options) {
-        option1Button.setText(options.get(0));
-        option2Button.setText(options.get(1));
-        option3Button.setText(options.get(2));
-    }
-
-
-
 }

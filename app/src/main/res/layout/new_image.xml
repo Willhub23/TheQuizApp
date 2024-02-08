@@ -8,21 +8,19 @@
     tools:ignore="HardcodedText">
 
     <Button
-        android:id="@+id/newImage"
+        android:id="@+id/newEntry"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:layout_marginLeft="16dp"
-        android:backgroundTint="@color/black"
-        android:text="Add image"
-        android:textColor="@android:color/white"
+        android:text="Add entry"
         android:textSize="18sp" />
 
     <ImageView
         android:id="@+id/selectedImage"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:layout_toRightOf="@id/newImage"
+        android:layout_toRightOf="@id/newEntry"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp" />

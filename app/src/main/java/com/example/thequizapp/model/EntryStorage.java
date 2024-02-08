@@ -3,35 +3,43 @@ package com.example.thequizapp.model;
 import android.app.Application;
 import android.content.ContentResolver;
 import android.net.Uri;
-import android.util.Log;
 
 import com.example.thequizapp.R;
 
-public class ImageStorage extends Application {
+/**
+ * Class for managing the list of ImageItem objects
+ */
+public class EntryStorage extends Application {
 
-    private static ImageItemList imageList;
+    private static EntryList imageList;
 
 
     @Override
     public void onCreate() {
         super.onCreate();
-        ImageStorage.imageList = new ImageItemList();
+        EntryStorage.imageList = new EntryList();
         imageToUriAndStore(R.drawable.danmark, "Danmark");
         imageToUriAndStore(R.drawable.england, "England");
-        imageToUriAndStore(R.drawable.england, "Kina");
+        imageToUriAndStore(R.drawable.kina, "Kina");
         imageToUriAndStore(R.drawable.norge, "Norge");
-        imageToUriAndStore(R.drawable.england, "Spania");
+        imageToUriAndStore(R.drawable.spania, "Spania");
     }
 
-    public static ImageItemList getImageList() {
+    // static because we will access it throughout the application
+    public static EntryList getImageList() {
         return imageList;
     }
 
 
-    public static void setItemList(ImageItemList itemList) {
-        ImageStorage.imageList = itemList;
+    public static void setItemList(EntryList itemList) {
+        EntryStorage.imageList = itemList;
     }
 
+    /**
+     * Converts an image resource ID to a URI and adds it to the imageList with the associated name
+     * @param imageId The resource ID of the image
+     * @param name The name associated with the image
+     */
 
     public void imageToUriAndStore(int imageId, String name) {
         Uri imageUri = new Uri.Builder()
@@ -40,7 +48,7 @@ public class ImageStorage extends Application {
                 .appendPath(getResources().getResourceTypeName(imageId))
                 .appendPath(getResources().getResourceEntryName(imageId))
                 .build();
-            imageList.add(new ImageItem(imageUri, name));
+            imageList.add(new Entry(imageUri, name));
 
         }
     }
