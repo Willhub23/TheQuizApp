@@ -13,7 +13,6 @@ public class EntryStorage extends Application {
 
     private static EntryList imageList;
 
-
     @Override
     public void onCreate() {
         super.onCreate();
@@ -28,11 +27,6 @@ public class EntryStorage extends Application {
     // static because we will access it throughout the application
     public static EntryList getImageList() {
         return imageList;
-    }
-
-
-    public static void setItemList(EntryList itemList) {
-        EntryStorage.imageList = itemList;
     }
 
     /**

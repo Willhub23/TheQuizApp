@@ -30,11 +30,11 @@ public class GalleryActivity extends AppCompatActivity {
 
     private GalleryAdapter galleryAdapter; // Adapter for inserting the ListView with gallery items
 
-    Button newEntry;
+    private Button newEntry;
 
-    ImageView selectedImage;
+    private ImageView selectedImage;
 
-    View includedLayout;
+    private View includedLayout;
 
 
     @Override

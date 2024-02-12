@@ -47,7 +47,6 @@ public class QuizActivity extends AppCompatActivity {
         startQuiz();
     }
 
-
     private void Answer(int index) {
         attempts++;
         if (correctPos == index) {
