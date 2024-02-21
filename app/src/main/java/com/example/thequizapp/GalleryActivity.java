@@ -42,7 +42,6 @@ public class GalleryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gallery);
 
-        EntryStorage.getImageList().sort();
 
         galleryListView = findViewById(R.id.galleryList);
         galleryAdapter = new GalleryAdapter(this, R.layout.gallery_entry, EntryStorage.getImageList().getImageList());

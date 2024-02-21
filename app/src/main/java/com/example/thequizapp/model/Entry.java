@@ -68,7 +68,6 @@ public class Entry {
         Entry entry = (Entry) o;
         return Objects.equals(image, entry.image) && Objects.equals(name, entry.name);
     }
-
     /**
      *
      * @return A string of the ImageItem
