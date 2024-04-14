@@ -10,7 +10,9 @@ import android.widget.Toast;
 
 import com.example.thequizapp.model.EntryStorage;
 
+
 public class MainActivity extends AppCompatActivity {
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,7 +28,6 @@ public class MainActivity extends AppCompatActivity {
                 if (EntryStorage.getImageList().getImageList().size() < 3) {
                     Toast.makeText(MainActivity.this, "Not enough entities for the quiz", Toast.LENGTH_SHORT).show();
                 } else {
-                    // Start quiz Activity
                     startActivity(new Intent(MainActivity.this, QuizActivity.class));
                 }
             }
@@ -40,5 +41,6 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
     }
 }

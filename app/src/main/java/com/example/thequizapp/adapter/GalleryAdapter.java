@@ -22,10 +22,11 @@ public class GalleryAdapter extends ArrayAdapter<Entry> {
     private Context aContext;
     private int aResource;
 
-    public GalleryAdapter(@NonNull Context context, int resource, @NonNull List<Entry> items) {
-        super(context, resource, items);
+    public GalleryAdapter(@NonNull Context context, int resource, List<Entry> entries) {
+        super(context, resource, entries);
         this.aContext = context;
         this.aResource = resource;
+
     }
 
     /**
@@ -45,15 +46,18 @@ public class GalleryAdapter extends ArrayAdapter<Entry> {
     @NonNull
     @Override
     public View getView(int position, @NonNull View convertView, @NonNull ViewGroup parent) {
-            LayoutInflater layoutInflater = LayoutInflater.from(aContext);
-
+        LayoutInflater layoutInflater = LayoutInflater.from(aContext);
+        Entry entry = getItem(position);
+        if (convertView == null) {
             convertView = layoutInflater.inflate(aResource, parent, false);
+        }
 
-            ImageView imageView = convertView.findViewById(R.id.image);
-            imageView.setImageURI(getItem(position).getImage());
+        ImageView imageView = convertView.findViewById(R.id.image);
+        imageView.setImageURI(entry.getImage());
 
-            TextView textView = convertView.findViewById(R.id.textView);
-            textView.setText(getItem(position).getName());
+        TextView textView = convertView.findViewById(R.id.textView);
+        textView.setText(entry.getName());
+
 
         return convertView;
     }

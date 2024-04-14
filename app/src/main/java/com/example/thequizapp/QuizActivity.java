@@ -26,7 +26,6 @@ public class QuizActivity extends AppCompatActivity {
 
     private List<String> options;
 
-    private List<Entry> imageList;
     private int attempts = 0;
     private int currentScore = 0;
 
@@ -58,6 +57,8 @@ public class QuizActivity extends AppCompatActivity {
         }
 
         updateScore();
+
+
 
     }
 

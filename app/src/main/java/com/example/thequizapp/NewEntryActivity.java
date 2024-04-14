@@ -4,6 +4,8 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -15,6 +17,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.thequizapp.model.Entry;
 import com.example.thequizapp.model.EntryStorage;
+
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class NewEntryActivity extends AppCompatActivity {
 
@@ -47,7 +52,13 @@ public class NewEntryActivity extends AppCompatActivity {
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                saveEntry();
+                if (imageUri == null || nameEditText.getText() == null)
+                    return;
+
+                Entry newEntry = new Entry(imageUri.toString(), nameEditText.getText().toString().trim());
+                EntryStorage.getImageList().add(newEntry);
+                saveEntryToDatabase(newEntry);
+                finish();
             }
         });
     }
@@ -90,17 +101,24 @@ public class NewEntryActivity extends AppCompatActivity {
     }
 
 
-    private void saveEntry() {
-        String name = nameEditText.getText().toString().trim();
-        if (name.isEmpty() || imageUri == null) {
-            Toast.makeText(this, "Select an image and enter a name", Toast.LENGTH_SHORT).show();
-            return;
-        }
-        // Save the image and name
-        Entry entry = new Entry(imageUri, name);
-        EntryStorage.getImageList().add(entry);
+    private void saveEntryToDatabase(Entry entry) {
+        ExecutorService executorService = Executors.newSingleThreadExecutor();
 
-        Toast.makeText(this, "Entry added successfully", Toast.LENGTH_SHORT).show();
-        finish();
+        Handler handler = new Handler(Looper.getMainLooper());
+
+        executorService.execute(new Runnable() {
+            @Override
+            public void run() {
+                EntryStorage.entryDatabase.getEntryDAO().insertEntry(entry);
+
+                handler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast.makeText(getApplicationContext(), "Entry added to database", Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+        });
+
     }
 }

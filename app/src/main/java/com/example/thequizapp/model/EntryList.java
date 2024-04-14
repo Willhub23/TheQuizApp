@@ -1,3 +1,4 @@
+
 package com.example.thequizapp.model;
 
 import java.util.ArrayList;

@@ -11,6 +11,7 @@
         android:layout_height="100dp"
         app:layout_constraintBottom_toTopOf="@id/galleryList" />
 
+
     <ListView
         android:id="@+id/galleryList"
         android:layout_width="0dp"
