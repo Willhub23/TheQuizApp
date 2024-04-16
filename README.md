@@ -15,12 +15,38 @@ Note that the output of --info various between operating systems. If you can't f
 #### Description
 This test checks if clicking the "Quiz" button in MainActivity navigates to QuizActivity
 #### Steps:
-1. Launch MainActivity
-2. Intercept the intent to start QuizActivity
-3. Click on the "Quiz" button
-4. Checks if the QuizActivity is launched
-#### Result:
+1. Launch MainActivity.
+2. Intercept the intent to start QuizActivity.
+3. Click on the "Quiz" button.
+4. Checks if the QuizActivity is launched.
+#### Expected Result:
 QuizActivity is successfully launched
 
 #### Implementation:
-Method: testToOpenQuizActivity()
+- Method: testToOpenQuizActivity()
+- Class: MainMenuTest
+- File: MainMenuTest.java
+
+![image](https://github.com/Willhub23/TheQuizApp/assets/89257272/d0705f5b-9998-42bb-ae3b-d7829f99fa02)
+
+## EntryAddAndDeleteTest
+### Test to add and delete entry in gallery
+#### Test case: testAddingEntry()
+#### Description
+This test verifies the functionality of adding a new entry in the NewEntryActivity
+#### Steps:
+1. Launch NewEntryActivity.
+2. Checks the inital size of the storage list.
+3. Mock the action of selecting an image from the device storage.
+4. Click on the image to choose that image.
+5. Writes the name of the image in the input field.
+6. Click on the save button to save image.
+7. Verify that the size of the entry list has increased by one.
+
+#### Expected Result:
+After adding a new entry, the size of the entry list should increase by one.
+
+#### Implementation:
+- Method: testAddingEntry()
+- Class: EntryAddAndDeleteTest
+- File: EntryAddAndDeleteTest.java
