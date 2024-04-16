@@ -11,7 +11,7 @@ Use Gradle either from the command line or through Android Studio's Gradle tool 
 Note that the output of --info various between operating systems. If you can't figure out the detailed steps that gradle is doing, use https://developer.android.com/studio/test/command-lineLinks to an external site. to run your tests from the commandline. Which APKs are used during testing? You can use the open-source tool apktool decode /path/to/the.apk to inspect their contents. Write your interpretation of the output in the README-file in your repo.
 ## Testing
 ## MainMenuTest
-### Test to open quiz
+### Test case: testToOpenQuizActivity()
 #### Description
 This test checks if clicking the "Quiz" button in MainActivity navigates to QuizActivity
 #### Steps:
@@ -29,11 +29,10 @@ QuizActivity is successfully launched
 
 ![image](https://github.com/Willhub23/TheQuizApp/assets/89257272/d0705f5b-9998-42bb-ae3b-d7829f99fa02)
 
-## EntryAddAndDeleteTest
-### Test to add and delete entry in gallery
+## EntryAddTest
 #### Test case: testAddingEntry()
 #### Description
-This test verifies the functionality of adding a new entry in the NewEntryActivity
+This test verifies the functionality of adding a new entry in the NewEntryActivity.
 #### Steps:
 1. Launch NewEntryActivity.
 2. Checks the inital size of the storage list.
@@ -48,5 +47,60 @@ After adding a new entry, the size of the entry list should increase by one.
 
 #### Implementation:
 - Method: testAddingEntry()
-- Class: EntryAddAndDeleteTest
-- File: EntryAddAndDeleteTest.java
+- Class: EntryAddTest
+- File: EntryAddTest.java
+
+![image](https://github.com/Willhub23/TheQuizApp/assets/89257272/0b91732a-742f-45c5-8590-1af414268b4c)
+
+## GalleryDeleteEntryTest
+#### Test case: testDeletingEntry
+#### Description
+This test verifies the functionality of deleting a entry in the GalleryActivity.
+#### Steps:
+1. Launch GalleryActivity.
+2. Retrive the original size of the Entry list.
+3. Wait for the gallery list to be loaded.
+4. Click on an entry to delete.
+5. Verify that the entry is removed from the list if the initial size was bigger than 3.
+6. Verify that the entry.
+#### Expected Result:
+If the initial size is bigger than 3, the entry should be removed from the list and the size should be decreaseed by 1.
+#### Implementation
+- Method: testDeletingEntry()
+- Class: GalleryDeleteEntryTest
+- File: GalleryDeleteEntryTest.java
+
+![image](https://github.com/Willhub23/TheQuizApp/assets/89257272/7e562050-0f9d-486b-b2cc-6eccb58b9cba)
+
+## QuizScoreUpdateTest
+#### Test case: testScoreUpdateForCorrectAnswer()
+#### Description
+This test verifies that the score is updated whenever a user selects the correct answer
+#### Steps:
+1. Launch QuizActivity
+2. Click the button for the correct answer
+3. Verify that the score is updated and matches the expected points
+#### Expected Result:
+After selecting the correct answer, the score should match the expected score
+#### Implementation:
+- Method: testScoreUpdateForCorrectAnswer()
+- Class: QuizScoreUpdateTest
+- File: QuizScoreUpdateTest.java
+
+#### Test case: testScoreUpdateForIncorrectAnswer()
+#### Description
+This test verifies that the score is updated whenever a user selects the wrong answer
+#### Steps:
+1. Launch QuizActivity
+2. Click the button for the incorrect answer
+3. Verify that the score is updated and matches the expected points
+#### Expected Result:
+After selecting the incorrect answer, the score should match the expected score
+#### Implementation:
+- Method: testScoreUpdateForIncorrectAnswer()
+- Class: QuizScoreUpdateTest
+- File: QuizScoreUpdateTest.java
+
+<img width="1142" alt="image" src="https://github.com/Willhub23/TheQuizApp/assets/89257272/b5de98cf-7f24-4f4e-8587-01e878302783">
+
+
