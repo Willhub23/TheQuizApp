@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?><manifest xmlns:android="http://schemas.android.com/apk/res/android" android:compileSdkVersion="34" android:compileSdkVersionCodename="14" package="com.example.thequizapp.test" platformBuildVersionCode="34" platformBuildVersionName="14">
+    <instrumentation android:functionalTest="false" android:handleProfiling="false" android:label="Tests for com.example.thequizapp" android:name="androidx.test.runner.AndroidJUnitRunner" android:targetPackage="com.example.thequizapp"/>
+    <application android:debuggable="true" android:extractNativeLibs="false">
+        <uses-library android:name="android.test.runner"/>
+    </application>
+</manifest>
