@@ -103,4 +103,12 @@ After selecting the incorrect answer, the score should match the expected score
 
 <img width="1142" alt="image" src="https://github.com/Willhub23/TheQuizApp/assets/89257272/b5de98cf-7f24-4f4e-8587-01e878302783">
 
+### Gradle
+<img width="641" alt="image" src="https://github.com/Willhub23/TheQuizApp/assets/89257272/2a57416b-615f-47e4-8201-b0aa0609c69d">
+
+## APK
+<img width="1261" alt="image" src="https://github.com/Willhub23/TheQuizApp/assets/89257272/16164014-039c-44a8-969a-1ab82f77f92d">
+
+#### Interpretation
+First the apktool loads the resource table from the apk file. Then decodes the file resources from the APK, the XML files and the AndroidMnifest.xml file. Then the code has been extracted for further analysis or modification
 
