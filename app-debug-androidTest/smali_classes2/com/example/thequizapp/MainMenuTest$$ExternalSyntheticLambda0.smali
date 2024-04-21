@@ -22,7 +22,7 @@
 
     check-cast p1, Lcom/example/thequizapp/QuizActivity;
 
-    invoke-static {p1}, Lcom/example/thequizapp/MainMenuTest;->lambda$testButtonClickOpensQuizActivity$0(Lcom/example/thequizapp/QuizActivity;)V
+    invoke-static {p1}, Lcom/example/thequizapp/MainMenuTest;->lambda$testToOpenQuizActivity$0(Lcom/example/thequizapp/QuizActivity;)V
 
     return-void
 .end method

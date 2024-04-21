@@ -31,7 +31,7 @@
     return-void
 .end method
 
-.method static synthetic lambda$testButtonClickOpensQuizActivity$0(Lcom/example/thequizapp/QuizActivity;)V
+.method static synthetic lambda$testToOpenQuizActivity$0(Lcom/example/thequizapp/QuizActivity;)V
     .locals 0
     .param p0, "activity"    # Lcom/example/thequizapp/QuizActivity;
 
@@ -73,7 +73,7 @@
     return-void
 .end method
 
-.method public testButtonClickOpensQuizActivity()V
+.method public testToOpenQuizActivity()V
     .locals 4
     .annotation runtime Lorg/junit/Test;
     .end annotation

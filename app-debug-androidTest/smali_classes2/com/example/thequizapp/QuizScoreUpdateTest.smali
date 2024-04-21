@@ -28,10 +28,10 @@
 .method public constructor <init>()V
     .locals 2
 
-    .line 19
+    .line 17
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 21
+    .line 19
     new-instance v0, Landroidx/test/ext/junit/rules/ActivityScenarioRule;
 
     const-class v1, Lcom/example/thequizapp/QuizActivity;
@@ -43,73 +43,81 @@
     return-void
 .end method
 
-.method private selectRandomAnswer()V
-    .locals 6
+.method private selectCorrectAnswer()V
+    .locals 4
 
-    .line 41
+    .line 44
     sget v0, Lcom/example/thequizapp/R$id;->button1:I
 
-    sget v1, Lcom/example/thequizapp/R$id;->button2:I
-
-    sget v2, Lcom/example/thequizapp/R$id;->button3:I
-
-    filled-new-array {v0, v1, v2}, [I
+    invoke-static {v0}, Landroidx/test/espresso/matcher/ViewMatchers;->withId(I)Lorg/hamcrest/Matcher;
 
     move-result-object v0
 
-    .line 44
-    .local v0, "answerButtonIds":[I
-    new-instance v1, Ljava/util/Random;
+    invoke-static {v0}, Landroidx/test/espresso/Espresso;->onView(Lorg/hamcrest/Matcher;)Landroidx/test/espresso/ViewInteraction;
 
-    invoke-direct {v1}, Ljava/util/Random;-><init>()V
+    move-result-object v0
 
-    array-length v2, v0
+    const/4 v1, 0x1
 
-    invoke-virtual {v1, v2}, Ljava/util/Random;->nextInt(I)I
+    new-array v1, v1, [Landroidx/test/espresso/ViewAction;
 
-    move-result v1
-
-    .line 47
-    .local v1, "randomIndex":I
-    aget v2, v0, v1
-
-    invoke-static {v2}, Landroidx/test/espresso/matcher/ViewMatchers;->withId(I)Lorg/hamcrest/Matcher;
-
-    move-result-object v2
-
-    invoke-static {v2}, Landroidx/test/espresso/Espresso;->onView(Lorg/hamcrest/Matcher;)Landroidx/test/espresso/ViewInteraction;
-
-    move-result-object v2
-
-    const/4 v3, 0x1
-
-    new-array v3, v3, [Landroidx/test/espresso/ViewAction;
-
-    const/4 v4, 0x0
+    const/4 v2, 0x0
 
     invoke-static {}, Landroidx/test/espresso/action/ViewActions;->click()Landroidx/test/espresso/ViewAction;
 
-    move-result-object v5
+    move-result-object v3
 
-    aput-object v5, v3, v4
+    aput-object v3, v1, v2
 
-    invoke-virtual {v2, v3}, Landroidx/test/espresso/ViewInteraction;->perform([Landroidx/test/espresso/ViewAction;)Landroidx/test/espresso/ViewInteraction;
+    invoke-virtual {v0, v1}, Landroidx/test/espresso/ViewInteraction;->perform([Landroidx/test/espresso/ViewAction;)Landroidx/test/espresso/ViewInteraction;
 
-    .line 48
+    .line 45
+    return-void
+.end method
+
+.method private selectIncorrectAnswer()V
+    .locals 4
+
+    .line 49
+    sget v0, Lcom/example/thequizapp/R$id;->button2:I
+
+    invoke-static {v0}, Landroidx/test/espresso/matcher/ViewMatchers;->withId(I)Lorg/hamcrest/Matcher;
+
+    move-result-object v0
+
+    invoke-static {v0}, Landroidx/test/espresso/Espresso;->onView(Lorg/hamcrest/Matcher;)Landroidx/test/espresso/ViewInteraction;
+
+    move-result-object v0
+
+    const/4 v1, 0x1
+
+    new-array v1, v1, [Landroidx/test/espresso/ViewAction;
+
+    const/4 v2, 0x0
+
+    invoke-static {}, Landroidx/test/espresso/action/ViewActions;->click()Landroidx/test/espresso/ViewAction;
+
+    move-result-object v3
+
+    aput-object v3, v1, v2
+
+    invoke-virtual {v0, v1}, Landroidx/test/espresso/ViewInteraction;->perform([Landroidx/test/espresso/ViewAction;)Landroidx/test/espresso/ViewInteraction;
+
+    .line 50
     return-void
 .end method
 
 
 # virtual methods
-.method public testScoreUpdateInQuizActivity()V
+.method public testScoreUpdateForCorrectAnswer()V
     .locals 2
     .annotation runtime Lorg/junit/Test;
     .end annotation
 
-    .line 28
-    invoke-direct {p0}, Lcom/example/thequizapp/QuizScoreUpdateTest;->selectRandomAnswer()V
+    .line 25
+    invoke-direct {p0}, Lcom/example/thequizapp/QuizScoreUpdateTest;->selectCorrectAnswer()V
 
-    .line 30
+    .line 28
     sget v0, Lcom/example/thequizapp/R$id;->scoreTextView:I
 
     invoke-static {v0}, Landroidx/test/espresso/matcher/ViewMatchers;->withId(I)Lorg/hamcrest/Matcher;
@@ -120,7 +128,7 @@
 
     move-result-object v0
 
-    .line 31
+    .line 29
     const-string v1, "Points: 1/1"
 
     invoke-static {v1}, Landroidx/test/espresso/matcher/ViewMatchers;->withText(Ljava/lang/String;)Lorg/hamcrest/Matcher;
@@ -133,10 +141,19 @@
 
     invoke-virtual {v0, v1}, Landroidx/test/espresso/ViewInteraction;->check(Landroidx/test/espresso/ViewAssertion;)Landroidx/test/espresso/ViewInteraction;
 
-    .line 34
-    invoke-direct {p0}, Lcom/example/thequizapp/QuizScoreUpdateTest;->selectRandomAnswer()V
+    .line 30
+    return-void
+.end method
+
+.method public testScoreUpdateForIncorrectAnswer()V
+    .locals 2
+    .annotation runtime Lorg/junit/Test;
+    .end annotation
 
     .line 35
+    invoke-direct {p0}, Lcom/example/thequizapp/QuizScoreUpdateTest;->selectIncorrectAnswer()V
+
+    .line 38
     sget v0, Lcom/example/thequizapp/R$id;->scoreTextView:I
 
     invoke-static {v0}, Landroidx/test/espresso/matcher/ViewMatchers;->withId(I)Lorg/hamcrest/Matcher;
@@ -147,7 +164,7 @@
 
     move-result-object v0
 
-    .line 36
+    .line 39
     const-string v1, "Points: 0/1"
 
     invoke-static {v1}, Landroidx/test/espresso/matcher/ViewMatchers;->withText(Ljava/lang/String;)Lorg/hamcrest/Matcher;
@@ -160,6 +177,6 @@
 
     invoke-virtual {v0, v1}, Landroidx/test/espresso/ViewInteraction;->check(Landroidx/test/espresso/ViewAssertion;)Landroidx/test/espresso/ViewInteraction;
 
-    .line 37
+    .line 40
     return-void
 .end method

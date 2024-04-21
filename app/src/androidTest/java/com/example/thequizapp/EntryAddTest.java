@@ -23,7 +23,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 @RunWith(AndroidJUnit4.class)
-public class EntryAddAndDeleteTest {
+public class EntryAddTest {
 
     private ActivityScenario<NewEntryActivity> newEntryActivityScenario;
     @Before
@@ -46,7 +46,6 @@ public class EntryAddAndDeleteTest {
         onView(withId(R.id.button_add_image)).perform(click());
 
         onView(withId(R.id.edit_text_name)).perform(ViewActions.typeText("Sverige"), ViewActions.closeSoftKeyboard());
-        // You may need to handle the image selection here depending on how the image is added
         onView(withId(R.id.button_save)).perform(click());
 
         assertEquals(initialSize + 1, EntryStorage.getImageList().getImageList().size());

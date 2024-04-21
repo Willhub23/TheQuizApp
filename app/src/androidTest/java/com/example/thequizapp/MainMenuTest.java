@@ -27,7 +27,7 @@ public class MainMenuTest {
     }
 
     @Test
-    public void testButtonClickOpensQuizActivity() {
+    public void testToOpenQuizActivity() {
         Espresso.onView(withId(R.id.quizButton))
                 .perform(ViewActions.click());
         ActivityScenario<QuizActivity> quizActivityScenario = ActivityScenario.launch(QuizActivity.class);
