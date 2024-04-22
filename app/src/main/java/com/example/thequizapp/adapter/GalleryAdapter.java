@@ -58,7 +58,6 @@ public class GalleryAdapter extends ArrayAdapter<Entry> {
         TextView textView = convertView.findViewById(R.id.textView);
         textView.setText(entry.getName());
 
-
         return convertView;
     }
 }

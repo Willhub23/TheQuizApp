@@ -5,6 +5,15 @@
       <entry key="app">
         <State />
       </entry>
+      <entry key="testAddingEntry()">
+        <State />
+      </entry>
+      <entry key="testScoreUpdateForCorrectAnswer()">
+        <State />
+      </entry>
+      <entry key="testScoreUpdateForIncorrectAnswer()">
+        <State />
+      </entry>
     </value>
   </component>
 </project>

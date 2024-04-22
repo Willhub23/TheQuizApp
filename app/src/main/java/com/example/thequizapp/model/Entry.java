@@ -24,7 +24,6 @@ public class Entry {
     private String name;
     @Ignore
     public Entry() {
-
     }
 
 

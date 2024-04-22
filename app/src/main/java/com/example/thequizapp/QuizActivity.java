@@ -58,8 +58,6 @@ public class QuizActivity extends AppCompatActivity {
 
         updateScore();
 
-
-
     }
 
     private void updateScore() {
@@ -108,4 +106,14 @@ public class QuizActivity extends AppCompatActivity {
 
 
     }
+
+    public Entry getCorrect() {
+        return correct;
+    }
+
+    public int getCorrectPos() {
+        return correctPos;
+    }
+
+
 }

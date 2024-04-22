@@ -56,7 +56,6 @@ public class GalleryActivity extends AppCompatActivity {
             Collections.sort(entryList.getImageList(), new Comparator<Entry>() {
                 @Override
                 public int compare(Entry o1, Entry o2) {
-                    // Implement your comparison logic here
                     return o1.getName().compareTo(o2.getName());
                 }
             });
@@ -69,12 +68,6 @@ public class GalleryActivity extends AppCompatActivity {
 
         galleryListView = findViewById(R.id.galleryList);
         galleryListView.setAdapter(galleryAdapter);
-
-
-
-
-
-
         galleryListView.setAdapter(galleryAdapter);
 
         includedLayout = findViewById(R.id.includedLayout);

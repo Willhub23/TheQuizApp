@@ -10,12 +10,15 @@ import java.util.List;
  * Represents a list of ImageItem objects
  */
 public class EntryList {
+
+    private Entry correct;
     private List<Entry>  imageList;
 
     /**
      * Constructs a new ImageItemList object with an empty list of ImageItem objects
      */
     public EntryList() {
+        this.correct = null;
         this.imageList = new ArrayList<Entry>();
     }
 
@@ -92,7 +95,6 @@ public class EntryList {
         if (copy.get(0).equals(correctName)) {
             wrongName1 = copy.get(1);
             wrongName2 = copy.get(2);
-
         } else {
             wrongName1 = copy.get(0);
             if(copy.get(1).equals(correctName)) {
@@ -101,23 +103,21 @@ public class EntryList {
                 wrongName2 = copy.get(1);
             }
         }
-
         answers.add(wrongName1.getName());
         answers.add(wrongName2.getName());
 
         Collections.shuffle(answers);
 
         return answers;
-
-
-
     }
 
+    public Entry getCorrect() {
+        return correct;
+    }
     /**
      *
      * @return A string representation of the ImageItemList
      */
-
     @Override
     public String toString() {
         StringBuilder str = new StringBuilder("List: { \n");
