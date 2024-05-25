@@ -23,7 +23,6 @@ import java.util.concurrent.atomic.AtomicReference;
 @RunWith(AndroidJUnit4.class)
 public class QuizScoreUpdateTest {
 
-
     @Rule
     public ActivityScenarioRule<QuizActivity> activityScenarioRule = new ActivityScenarioRule<>(QuizActivity.class);
 
@@ -47,11 +46,15 @@ public class QuizScoreUpdateTest {
             // Capture the correct answer
             correctOption.set(activity.getCorrect().getName());
         });
+
+        // Perform a click action on the button with the correct answer
         onView(allOf(withText(correctOption.get()), isDisplayed())).perform(click());
 
+        // Verify that the scoreTextView text updates correctly for a correct answer
         onView(withId(R.id.scoreTextView))
                 .check(matches(withText("Points: 1/1")));
     }
+
     @Test
     public void testScoreUpdateForIncorrectAnswer() {
         // Use AtomicReference to store the correct answer
@@ -69,11 +72,13 @@ public class QuizScoreUpdateTest {
                 break;
             }
         }
-        // Verify that the scoreTextView text does not change
+
+        // Verify that the scoreTextView text updates correctly for an incorrect answer
         onView(withId(R.id.scoreTextView))
                 .check(matches(withText("Points: 0/1")));
     }
 
+    // Helper method to get the button ID based on the index
     private int getButtonId(int index) {
         switch (index) {
             case 1:

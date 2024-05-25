@@ -10,7 +10,6 @@ import java.util.List;
  * Represents a list of ImageItem objects
  */
 public class EntryList {
-
     private Entry correct;
     private List<Entry>  imageList;
 
@@ -45,14 +44,6 @@ public class EntryList {
     public void add(Entry newEntry) {
         imageList.add(newEntry);
         sort();
-    }
-
-    /**
-     * Removes the specified ImageItem object from the list
-     * @param entry
-     */
-    public void remove(Entry entry) {
-        imageList.remove(entry);
     }
 
     /**
@@ -109,10 +100,6 @@ public class EntryList {
         Collections.shuffle(answers);
 
         return answers;
-    }
-
-    public Entry getCorrect() {
-        return correct;
     }
     /**
      *

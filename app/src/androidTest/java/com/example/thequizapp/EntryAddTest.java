@@ -26,31 +26,39 @@ import org.junit.runner.RunWith;
 public class EntryAddTest {
 
     private ActivityScenario<NewEntryActivity> newEntryActivityScenario;
+
     @Before
     public void setUp() {
+        // Initialize Espresso Intents and launch the NewEntryActivity before each test
         Intents.init();
         newEntryActivityScenario = ActivityScenario.launch(NewEntryActivity.class);
     }
 
     @After
     public void tearDown() {
+        // Close the NewEntryActivity and release Espresso Intents after each test
         newEntryActivityScenario.close();
         Intents.release();
     }
 
     @Test
     public void testAddingEntry() {
+        // Capture the initial size of the entry list in EntryStorage
         int initialSize = EntryStorage.getImageList().getImageList().size();
-        Intents.intending(hasAction(Intent.ACTION_GET_CONTENT)).respondWith(new Instrumentation.ActivityResult(Activity.RESULT_OK, new Intent()));
 
+        // Mock the image selection operation to respond with a successful selection
+        Intents.intending(hasAction(Intent.ACTION_GET_CONTENT))
+                .respondWith(new Instrumentation.ActivityResult(Activity.RESULT_OK, new Intent()));
+
+        // Perform click action on the "Add Image" button to simulate selecting an image
         onView(withId(R.id.button_add_image)).perform(click());
 
-        onView(withId(R.id.edit_text_name)).perform(ViewActions.typeText("Sverige"), ViewActions.closeSoftKeyboard());
+        // Input a name for the new entry and trigger the save action
+        onView(withId(R.id.edit_text_name))
+                .perform(ViewActions.typeText("Sverige"), ViewActions.closeSoftKeyboard());
         onView(withId(R.id.button_save)).perform(click());
 
+        // Assert that the size of the entry list has increased by one after adding the new entry
         assertEquals(initialSize + 1, EntryStorage.getImageList().getImageList().size());
     }
-
-
-
 }

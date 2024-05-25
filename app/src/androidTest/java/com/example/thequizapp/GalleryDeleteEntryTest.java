@@ -26,35 +26,39 @@ import org.junit.runner.RunWith;
 public class GalleryDeleteEntryTest {
 
     private ActivityScenario<GalleryActivity> galleryActivityScenario;
+
+    // Setup method to initialize necessary components before each test
     @Before
     public void setUp() {
-        Intents.init();
-        galleryActivityScenario = ActivityScenario.launch(GalleryActivity.class);
+        Intents.init(); // Initialize Intents for handling intents in tests
+        galleryActivityScenario = ActivityScenario.launch(GalleryActivity.class); // Launch GalleryActivity
     }
 
+    // Teardown method to release resources after each test
     @After
     public void tearDown() {
-        galleryActivityScenario.close();
-        Intents.release();
+        galleryActivityScenario.close(); // Close GalleryActivity
+        Intents.release(); // Release Intents
     }
 
+    // Test method to verify the deletion of an entry from the gallery
     @Test
     public void testDeletingEntry() {
-        int initialSize = EntryStorage.getImageList().getImageList().size();
+        int initialSize = EntryStorage.getImageList().getImageList().size(); // Get initial size of image list
 
-        onView(withId(R.id.galleryList)).check(matches(isDisplayed()));
+        onView(withId(R.id.galleryList)).check(matches(isDisplayed())); // Check if gallery list is displayed
 
-        onData(anything()).inAdapterView(withId(R.id.galleryList)).atPosition(0).perform(scrollTo());
+        onData(anything()).inAdapterView(withId(R.id.galleryList)).atPosition(0).perform(scrollTo()); // Scroll to first item in gallery list
 
-        onData(anything()).inAdapterView(withId(R.id.galleryList)).atPosition(0).perform(click());
+        onData(anything()).inAdapterView(withId(R.id.galleryList)).atPosition(0).perform(click()); // Click on first item in gallery list to delete it
 
-
+        // Assert that the size of the image list decreases by one after deletion
         if (initialSize > 3) {
             assertTrue(EntryStorage.getImageList().getImageList().size() < initialSize);
             assertEquals(EntryStorage.getImageList().getImageList().size(), initialSize - 1);
         }
+
+        // Assert that the size of the image list remains at least 3 after deletion
         assertTrue(EntryStorage.getImageList().getImageList().size() >= 3);
     }
-
-
 }

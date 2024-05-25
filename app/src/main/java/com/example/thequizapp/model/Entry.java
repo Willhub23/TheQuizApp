@@ -13,8 +13,10 @@ import java.util.Objects;
 /**
  * Represents an item/entry in the gallery, an image and a name
  */
-@Entity(tableName = "entries")
-public class Entry {
+    @Entity(tableName = "entries")
+    public class Entry {
+
+    // Primary key that auto-generates unique IDs for each entry
     @ColumnInfo(name = "entry_id")
     @PrimaryKey(autoGenerate = true)
     private int id;
@@ -26,11 +28,10 @@ public class Entry {
     public Entry() {
     }
 
-
     public Entry(String imageStr, String name) {
         this.name = name;
         this.imageStr = imageStr;
-        this.id = 0;
+        this.id = 0; // ID will be set by the database when the entry is inserted
     }
 
     public int getId() {
@@ -63,19 +64,6 @@ public class Entry {
         return imageStr;
     }
 
-    public void setImageStr(String imageStr) {
-        this.imageStr = imageStr;
-    }
-
-    /**
-     * Method to set URI of the image
-     * @param image The URI of the image
-     */
-    public void setImage(String image) {
-        this.imageStr = image.toString();
-
-    }
-
     /**
      * Compares this ImageItem to the object. The result is true if argument is not null
      * and is an ImageItem object with the same image URI and name as this object.
@@ -90,13 +78,10 @@ public class Entry {
         return imageStr == entry.imageStr &&
                 Objects.equals(name, entry.name);
     }
-
     @Override
     public int hashCode() {
         return Objects.hash(imageStr, name);
     }
-
-
     /**
      *
      * @return A string of the ImageItem

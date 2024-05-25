@@ -26,7 +26,6 @@ public class GalleryAdapter extends ArrayAdapter<Entry> {
         super(context, resource, entries);
         this.aContext = context;
         this.aResource = resource;
-
     }
 
     /**
@@ -40,24 +39,33 @@ public class GalleryAdapter extends ArrayAdapter<Entry> {
      *        always of the right type (see {@link #getViewTypeCount()} and
      *        {@link #getItemViewType(int)}).
      * @param parent The parent that this view will eventually be attached to
-     * @return
+     * @return The View representing the item at the specified position
      */
-
     @NonNull
     @Override
     public View getView(int position, @NonNull View convertView, @NonNull ViewGroup parent) {
+        // Obtain the LayoutInflater from the provided Context
         LayoutInflater layoutInflater = LayoutInflater.from(aContext);
+
+        // Get the Entry object at the specified position
         Entry entry = getItem(position);
+
+        // If convertView is null, inflate the layout for the ListView item
         if (convertView == null) {
             convertView = layoutInflater.inflate(aResource, parent, false);
         }
 
+        // Get references to ImageView and TextView in the inflated layout
         ImageView imageView = convertView.findViewById(R.id.image);
-        imageView.setImageURI(entry.getImage());
-
         TextView textView = convertView.findViewById(R.id.textView);
-        textView.setText(entry.getName());
 
+        // Set the image and text for the current item in the ListView
+        if (entry != null) {
+            imageView.setImageURI(entry.getImage());
+            textView.setText(entry.getName());
+        }
+
+        // Return the populated view
         return convertView;
     }
 }
